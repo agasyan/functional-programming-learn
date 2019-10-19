@@ -38,3 +38,47 @@ jumlahList xs = foldl (+) 0 xs
                 Contoh input = [1,2,3,4]
                 output = 10
 -}
+
+{- Nomor 5 -}
+misteriNo5 xs ys = concat (map (\x -> map (\y -> (x,y)) ys) xs)
+
+{-
+    Jawaban:
+    input: misteriNo5 [1,2,3] [4,5,6]
+    Output: [(1,4),(1,5),(1,6),(2,4),(2,5),(2,6),(3,4),(3,5),(3,6)]
+    Evaluasi:
+    concat (map (\x -> map (\y -> (x,y)) ys) xs)
+    concat (map (\y -> (1,y)) [4,5,6], [map (\y -> (2,y)) [4,5,6]], [map (\y -> (3,y)) [4,5,6])
+    concat ([(1,4),(1,5),(1,6)],[(2,4),(2,5),(2,6)],[(3,4),(3,5),(3,6)])
+    [(1,4),(1,5),(1,6)] ++ [(2,4),(2,5),(2,6)] ++ [(3,4),(3,5),(3,6)]
+    [(1,4),(1,5),(1,6),(2,4),(2,5),(2,6),(3,4),(3,5),(3,6)]
+
+    ## Concat untuk menggabungkan semua elemen dalam argumen
+    ## map menjalankan semua fungsi ke semua elemen list lain
+-}
+
+{- Nomor 6 Primes dari infinite list menggunakan sieve of erasthothenes -}
+primes = sieve [2..]
+    where sieve (k:ks) = k:(sieve [l|l <- ks, l `mod` k /= 0])
+
+{- Penjelasan:
+    Fungsi sieve adalah mengambil tiap angka setelah 2 maka mencari modulo yang bukan 0 jika dibagikan dengan elemen prima yang sudah ada
+    : adalah concat
+-}
+
+{- Nomor 7 Flip dan contohnya -}
+tes7 :: Num a => a -> a -> a
+tes7 x y = 2*x + y
+
+newFlip :: (a -> b -> c) -> b -> a -> c
+newFlip f = (\a b -> f b a)
+
+{-
+    Penjelasan: Pada :: tipe definisi fungsi menukar a dan menjadi b dan a untuk menghasilkan c
+    sehingga pada pembuatan definisi flip menukar lambda a b ke fungsi b a
+    Contoh input dan output
+    input: newFlip tes7 1 2
+    output: 5
+
+    Jika tidak di flip maka jawabannya 4
+-}
