@@ -71,7 +71,7 @@ tes7 :: Num a => a -> a -> a
 tes7 x y = 2*x + y
 
 newFlip :: (a -> b -> c) -> b -> a -> c
-newFlip f = (\a b -> f b a)
+newFlip f a b= f b a
 
 {-
     Penjelasan: Pada :: tipe definisi fungsi menukar a dan menjadi b dan a untuk menghasilkan c
