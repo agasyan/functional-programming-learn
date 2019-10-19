@@ -82,3 +82,30 @@ newFlip f a b= f b a
 
     Jika tidak di flip maka jawabannya 4
 -}
+
+{- Nomor 8 Robot.hs Tipe fungsi updateState -}
+
+{- Jawaban:
+    dari updateState u = Robot (\s  -> return (u s, ()))  di robot.hs bisa diketahui bahwa 
+    tipe updateState :: (RobotState -> RobotState) -> Robot (). Fungsi menerima u yang merupakan
+    suatu fungsi untuk merubah RobotState. Hasil akhir dari fungsi akan dibungkus menjadi sebuah robot kembali
+-}
+
+{- Nomor 9 Robot.hs Definisi fungsi turnRight -}
+
+{- Jawaban:
+    turnRight :: Robot ()
+    turnRight = updateState (\s -> s {facing = right (facing s)})
+    
+    right :: Direction -> Direction
+    right d = toEnum(succ (fromEnum d) `mod` 4)
+-}
+
+{- Nomor 10 Robot.hs Tipe fungsi toEnum  -}
+
+{- Jawaban: 
+    Fungsi ini memiliki tipe "toEnum :: Enum a => Int -> a"
+    Fungsi akan mengembalikan suatu data berdasarkan data yang sudah dideklarasikan
+    Dari integer ke a (a sudah derive enum untuk disini direction). Misal pada right
+    karena sudah dideklarasikan akan mengembalikan direction maka akan mengembalikan direction.
+-}
