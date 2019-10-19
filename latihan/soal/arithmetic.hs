@@ -43,3 +43,22 @@ foldExp combine constFn (i :/ j) = combine (foldExp combine constFn i) (foldExp 
 {-
     Combine berfungsi untuk menggabungkan 
 -}
+
+{- Evaluate untuk mengubah ekspresi menjadi angka float -}
+evaluate :: Expr -> Float
+evaluate (C x) = x
+evaluate (i :+ j) = evaluate i + evaluate j
+evaluate (i :- j) = evaluate i - evaluate j
+evaluate (i :* j) = evaluate i * evaluate j
+evaluate (i :/ j) = evaluate i / evaluate j
+evaluate (Let v h i) = evaluate (subst v h i)
+evaluate (V _) = 0.
+
+subst :: String -> Expr -> Expr -> Expr
+subst v0 h (V v1) = if (v0 == v1) then h else (V v1)
+subst _ _ (C c) = (C c) 
+subst v0 h (i :+ j) = subst v0 h i :+ subst v0 h j
+subst v0 h (i :- j) = subst v0 h i :- subst v0 h j
+subst v0 h (i :* j) = subst v0 h i :* subst v0 h j
+subst v0 h (i :/ j) = subst v0 h i :/ subst v0 h j
+subst v0 h (Let v1 i j) = Let v1 i (subst v0 h j)
