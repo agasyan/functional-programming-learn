@@ -30,3 +30,11 @@ qSort (x:xs)= (qSort [y | y <- xs, y <= x]) ++ [x] ++ (qSort [y | y <- xs, y > x
     Input: [1,3,4,1,3,2]
     Output: [1,1,2,3,3,4]
 -}
+
+{- Nomor 4 jumlahList -}
+jumlahList xs = foldl (+) 0 xs
+
+{- Penjelasan:  Akan melakukan penjumlahan dari 0 ke elemen pertama sampai terakhir
+                Contoh input = [1,2,3,4]
+                output = 10
+-}
