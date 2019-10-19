@@ -40,3 +40,11 @@ mSort merge as
           half = length as `div` 2
 
 {- Pemanggilan: mSort merge ~arr~ -}
+
+{- No 4 MaxList Mencari elemen terbesar dari sebuah list -}
+maxList (x:xs) = foldl (max) x xs
+{- 
+    Contoh Pasangan input output
+    input: [-1,0,-100,2,3,4,5]
+    Output: 5
+-}
