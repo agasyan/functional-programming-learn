@@ -1,3 +1,61 @@
+-- Soal 1
+
+{-
+Given a sentence, define a function called capitalise which returns the same sentence with all words capitalised except the ones from a given list.
+(source: https://www.fer.unizg.hr/)
+capitalise :: String -> [String] -> String
+capitalise "this is a sentence." ["a", "is"]
+"This is a Sentence."
+-}
+
+
+getWord word [] = (word,[])
+getWord word (x:xs) | x == ' ' = (word, xs)
+                    | x /= ' ' = getWord (word ++ [x]) xs  
+
+-- >>> getWord [] "this is a sentence"
+-- ("this","is a sentence")
+--
+
+splitter lw []  = lw
+splitter lw inp = let (word, rest) = getWord "" inp
+                  in splitter (lw ++ [word]) rest 
+                  
+-- >>> splitter [] "this is a sentence."
+-- ["this","is","a","sentence."]
+--
+
+-- >>> Char.toUpper 'a'
+-- 'A'
+--
+
+upper el word = if word `elem` el 
+                then word 
+                else Char.toUpper (head word) : (tail word)
+
+-- >>> upper ["is","a"] "this"
+-- "This"
+--
+
+combine []  = []
+combine [a] = a
+combine (a:xs) = a ++ " " ++ (combine xs)
+
+-- >>> combine ["this","is","a","sentence."]
+-- "this is a sentence."
+--
+
+capitalise el inp = let lw = splitter [] inp
+                    in combine (map (upper el) lw) 
+
+capitalise el inp = combine (map (upper el) (splitter [] inp)) 
+
+capitalise el  =  combine . (map (upper el)) . (splitter []) 
+
+
+-- >>> capitalise "this is a sentence." ["a", "is"]
+-- "This is a Sentence. "
+
 -- Soal 2 compose (.) dot function
 
 dot :: (b -> c) -> (a -> b) -> a -> c
@@ -144,7 +202,5 @@ function useWindowWidth() {
     T = \xy.x
     F = \xy.y
 
-    Definisi if P then E1 else E2, PE1E2
-    Jika P = T, (\xy.x)E1E2 = (\y.E1)E2 = E1
-    Jika P = F, (\xy.y)E1E2 = (\y.y)E2 = E2
+    Definisi  
 -}
