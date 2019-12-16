@@ -123,6 +123,51 @@ Functional pada: mapping pada list yang menerima sebuah function untuk diterapka
 
 {- Soal 8 useReducer example -}
 
+{-
+useReducer:
+-useReducer is one of a handful of React hooks that shipped in React 16.7.0. It accepts a 
+reducer function with the application initial state, returns the current application state, 
+then dispatches a function.
+
+The first and most important thing to understand about a reducer is that it will always only return one value. 
+The job of a reducer is to reduce.
+
+Implementasi pada kuis9
+
+------------------------------------------
+
+const [todos, dispatch] = useReducer(todoReducer, initialState);}
+
+const todoReducer = (state, action) => {
+  switch (action.type) {
+    case 'ADD_TODO': {
+      return (action.name.length)
+      ? [...state, {
+        id: state.length ? Math.max(...state.map(todo => todo.id)) + 1 : 0,
+        name: action.name,
+        complete: false
+      }]
+      : state;
+    }
+    default: {
+      return state
+    }
+  }
+
+function addTodo(event) {
+    event.preventDefault();
+    dispatch({
+      type: 'ADD_TODO',
+      name: inputRef.current.value,
+      complete: false
+    });
+      inputRef.current.value = '';
+  }
+
+
+
+-}
+
 {- Soal 9 useState abstraction -}
 
 {-
