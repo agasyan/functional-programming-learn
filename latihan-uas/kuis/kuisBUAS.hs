@@ -201,6 +201,22 @@ function useWindowWidth() {
 {-
     T = \xy.x
     F = \xy.y
+    And = ∧ ≡ λxy.xy(λuv.v) ≡ λxy.xyF
 
-    Definisi  
+    Definisi:
+    True And False ≡ F
+
+    (left hand-side)
+    ≡ T AND F
+    ≡ T (λuv.uvF) F
+    ≡ T (λv.FvF)
+    ≡ (λxy.x) (λv.FvF)
+    ≡ (λy.(λv.FvF))
+    ≡ (λy.(λv.(λab.b)v(λcd.d)))
+    ≡ (λy.(λv.(λb.b)(λcd.d)))
+    ≡ (λy.(λv.(λcd.d)))
+    ≡ (λcd.d)
+    ≡ F
+
+
 -}
