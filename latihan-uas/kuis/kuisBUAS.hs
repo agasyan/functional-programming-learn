@@ -31,4 +31,16 @@ monthlyPercentagePFS = div100 . div12
 
 -- Soal 7
 
--- Soal 8
+-- Soal 8 useReducer Cimplete
+
+{-
+
+const completeReducer = (state, action) => {
+      return state.map((item) =>
+        item.id === action.id
+          ? { ...item, complete: !item.complete }
+          : item
+      )
+
+const [todos, dispatch] = useReducer(completeReducer, initialState);}
+-}
