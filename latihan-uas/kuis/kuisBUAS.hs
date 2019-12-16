@@ -1,4 +1,7 @@
--- Soal 2
+-- Soal 2 compose (.) dot function
+
+dot :: (b -> c) -> (a -> b) -> a -> c
+dot f g = \x -> f (g x)
 
 -- Soal 3 last dengan foldr atau l
 
@@ -88,4 +91,60 @@ const completeReducer = (state, action) => {
       )
 
 const [todos, dispatch] = useReducer(completeReducer, initialState);}
+-}
+
+{- Nomor 9 title react hooks pure function
+
+Before:
+componentDidMount() {
+    document.title =
+      this.state.name + " " + this.state.surname;
+  }
+​
+  componentDidUpdate() {
+    document.title =
+      this.state.name + " " + this.state.surname;
+  }
+
+After:
+
+Karena isi nya mengubah efek yang sama yaitu judul maka bisa dipakai ulang
+
+function useDocumentTitle(title) {
+  useEffect(() => {
+    document.title = title;
+  });
+}
+
+---- Use Window Width
+
+handleResize() {
+    this.setState({ width: window.innerWidth });
+  }
+
+After:
+
+function useWindowWidth() {
+  const [width, setWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
+  return width;
+}
+
+-}
+
+{- Soal 10 True False lambda calculus dan True And False = False -}
+
+{-
+    T = \xy.x
+    F = \xy.y
+
+    Definisi if P then E1 else E2, PE1E2
+    Jika P = T, (\xy.x)E1E2 = (\y.E1)E2 = E1
+    Jika P = F, (\xy.y)E1E2 = (\y.y)E2 = E2
 -}
