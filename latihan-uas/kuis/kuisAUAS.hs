@@ -136,11 +136,7 @@ Implementasi pada kuis9
 
 ------------------------------------------
 
-const [todos, dispatch] = useReducer(todoReducer, initialState);}
-
-const todoReducer = (state, action) => {
-  switch (action.type) {
-    case 'ADD_TODO': {
+  const addReducer = (state, action) => {
       return (action.name.length)
       ? [...state, {
         id: state.length ? Math.max(...state.map(todo => todo.id)) + 1 : 0,
@@ -148,22 +144,8 @@ const todoReducer = (state, action) => {
         complete: false
       }]
       : state;
-    }
-    default: {
-      return state
-    }
-  }
 
-function addTodo(event) {
-    event.preventDefault();
-    dispatch({
-      type: 'ADD_TODO',
-      name: inputRef.current.value,
-      complete: false
-    });
-      inputRef.current.value = '';
-  }
-
+const [todos, dispatch] = useReducer(addReducer, initialState);}
 
 
 -}
