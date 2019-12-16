@@ -153,16 +153,34 @@ const [todos, dispatch] = useReducer(addReducer, initialState);}
 {- Soal 9 useState abstraction -}
 
 {-
+    Before:
+
+​
+    function handleNameChange(e) {
+        setName(e.target.value);
+    }
+    ​
+    function handleSurnameChange(e) {
+        setSurname(e.target.value);
+    }
+​
+    
     Karena name dan surname menggunakan useState dengan cara yang sama,
     yaitu pada input field, keduanya dapat diabstraksikan kembali sehingga
     menjadi fungsi form yang menerima label.
 
     pseudocode:
-    function formInput(label) {
-        const [value, setValue] = useState(label);
-        // handle function
-        return {value, onChange: setValue}
+    function useFormInput(initialValue) {
+    const [value, setValue] = useState(initialValue);
+    function handleChange(e) {
+        setValue(e.target.value);
     }
+    return {
+        value,
+        onChange: handleChange,
+    };
+    }
+​
 
     fungsi di atas akan dipanggil untuk name dan surname sehingga dapat 
     digunakan sebagai hooks seperti semula.
